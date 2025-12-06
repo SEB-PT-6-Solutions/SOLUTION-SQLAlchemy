@@ -1,10 +1,10 @@
 # seed.py
 
 from sqlalchemy.orm import sessionmaker, Session
-from data.tea_data import teas_list
+from data.tea_data import teas_list, comments_list
 from config.environment import db_URI
 from sqlalchemy import create_engine
-from models.tea import Base, TeaModel
+from models.base import Base
 
 engine = create_engine(db_URI)
 SessionLocal = sessionmaker(bind=engine)
@@ -20,8 +20,14 @@ try:
     print("seeding the database...")
     # Seed teas
     db = SessionLocal()
+
+    # Create all Tea entries
     db.add_all(teas_list)
     db.commit()
+
+    db.add_all(comments_list)
+    db.commit()
+
     db.close()
 
     print("Database seeding complete! 👋")

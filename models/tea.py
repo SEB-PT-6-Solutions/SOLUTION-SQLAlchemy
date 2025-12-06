@@ -1,14 +1,10 @@
 # models/tea.py
 
 from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+from .base import BaseModel
+from sqlalchemy.orm import relationship
 
-Base = declarative_base()
-
-#  TeaModel extends SQLAlchemy's Base class.
-#  Extending Base lets SQLAlchemy 'know' about our model, so it can use it.
-
-class TeaModel(Base):
+class TeaModel(BaseModel):
 
     # This will be used directly to make a
     # TABLE in Postgresql
@@ -20,3 +16,5 @@ class TeaModel(Base):
     name = Column(String, unique=True)
     in_stock = Column(Boolean)
     rating = Column(Integer)
+
+    comments = relationship('CommentModel', back_populates="tea")

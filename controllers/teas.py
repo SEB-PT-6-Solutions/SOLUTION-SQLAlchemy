@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 # mock DB
-from models.tea_data import teas_db
+from data.tea_data import teas_db
 
 router = APIRouter()
 
