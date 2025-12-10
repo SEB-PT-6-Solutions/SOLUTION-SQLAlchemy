@@ -3,6 +3,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from .base import BaseModel
 from sqlalchemy.orm import relationship
+from .comment import CommentModel
 
 class TeaModel(BaseModel):
 
